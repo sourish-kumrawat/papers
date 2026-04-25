@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+</head>
+<body>
+  <h1>Welcome to my site</h1>
+
+  <p>
+    <a href="my-file.pdf" target="_blank">Open my PDF</a>
+  </p>
+</body>
+</html>
