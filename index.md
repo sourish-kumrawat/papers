@@ -24,16 +24,8 @@ description: Mathematics, machine learning, and scientific computing.
   <h2 id="papers-title">Papers</h2>
   <ol class="paper-list">
     <li>
-      <a href="{{ '/sts_paper_revised.tex' | relative_url }}">When Does Gradient Flow Collapse Two Neurons?</a>
+      <a href="{{ '/uniform_prime_gap_disproof.pdf' | relative_url }}">An Elementary Obstruction to Uniform Prime-Gap Asymptotics?</a>
       <p>Lorentz transport, saddle geometry, and a complete scalar phase portrait.</p>
-    </li>
-    <li>
-      <a href="{{ '/observable_qsc/paper/observable_centric_qsc_results.pdf' | relative_url }}">Observable-Centric Quantum Scientific Computing</a>
-      <p>Co-optimizing algorithms, compilation, and error mitigation for certified scientific quantities.</p>
-    </li>
-    <li>
-      <a href="{{ '/polynomial_path_submission.tex' | relative_url }}">A Shortest Path in a Polynomial Lemniscate</a>
-      <p>A concise proof about shortest rectifiable paths inside polynomial lemniscates.</p>
     </li>
   </ol>
 </section>
