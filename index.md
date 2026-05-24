@@ -25,7 +25,7 @@ description: Mathematics, machine learning, and scientific computing.
   <ol class="paper-list">
     <li>
       <a href="{{ '/uniform_prime_gap_disproof.pdf' | relative_url }}">An Elementary Obstruction to Uniform Prime-Gap Asymptotics?</a>
-      <p>Lorentz transport, saddle geometry, and a complete scalar phase portrait.</p>
+      <p>Paper on the verified disproof of Erdős Problem #1138. Verified by the Erdős community.</p>
     </li>
   </ol>
 </section>
