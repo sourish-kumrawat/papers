@@ -24,7 +24,7 @@ description: Mathematics, machine learning, and scientific computing.
   <h2 id="papers-title">Papers</h2>
   <ol class="paper-list">
     <li>
-      <a href="{{ '/uniform_prime_gap_disproof.pdf' | relative_url }}">An Elementary Obstruction to Uniform Prime-Gap Asymptotics?</a>
+      <a href="{{ '/uniform_prime_gap_disproof.pdf' | relative_url }}">An Elementary Obstruction to Uniform Prime-Gap Asymptotics</a>
       <p>Paper on the verified disproof of Erdős Problem #1138. Verified by the Erdős community.</p>
     </li>
   </ol>
