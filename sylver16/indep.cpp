@@ -116,6 +116,21 @@ int main(int argc,char**argv){
                 for(int x=1;x<=F;++x) if(tst(K,x)) printf("%d,",x); printf("}\n"); } };
         dump("R1",r1Pex); dump("R2",symPex);
         printf("memo states=%zu nodes=%llu\n",memo.size(),(unsigned long long)nodes);
+    } else if(mode=="delta"){
+        int G = argc>2?atoi(argv[2]):16;
+        vector<Key> all; enumerate(G,all);
+        for(auto&K:all) solve(K);
+        map<int,pair<long long,long long>> hist;   // delta -> (P count, N count)
+        int minDeltaP=1<<30;
+        for(auto&K:all){
+            int F=keyF(K), g=0; for(int x=1;x<=F;++x) if(tst(K,x))++g;
+            int d=2*g-F-1;
+            if(solve(K)==1){ hist[d].first++; if(d<minDeltaP) minDeltaP=d; }
+            else hist[d].second++;
+        }
+        printf("delta=2*genus-F-1 :   P-count   N-count   (delta=0 <=> symmetric)\n");
+        for(auto&kv:hist) printf("  delta=%-4d %10lld %10lld\n",kv.first,kv.second.first,kv.second.second);
+        printf("minimum delta over all P-positions = %d\n",minDeltaP);
     } else if(mode=="sym"){
         // structure of winning moves from symmetric positions
         int G = argc>2?atoi(argv[2]):14;
