@@ -172,6 +172,23 @@ and `8p` (`p, q` both odd) gives:
 
 Everything below is what is left. Nothing else is needed.
 
+### 5.0 Current state of the seven rays
+
+```
+ gcd-2 layer,  Q_n = <16,2n> = 2<8,n>,  n odd        (verified independently here)
+   n = 1 mod 8 :  n=9  N  (odd move 5)        smallest undecided root: n=17
+   n = 3 mod 8 :  n=3  N  (odd move 7)        smallest undecided root: n=11
+   n = 5 mod 8 :  n=5  N  (odd move 9)        smallest undecided root: n=13
+   n = 7 mod 8 :  n=7  N  (even move 8; rests on <8,14> P, i.e. on O3)
+                                              smallest undecided root: n=15
+ gcd-4 layer,  <16,4q> = 4<4,q>,  q odd       : no root decided by anyone
+ gcd-8 layer,  <16,8q> = 8<2,q>,  q odd       : no root decided by anyone
+```
+
+Every entry above is an **N**, so no P-root has been found in any ray — but no ray has been
+*cleared* either, and the search has reached only the first root of each. `<16,14,8> = <8,14>` and
+`<16,6,7> = <6,7,16>` were checked directly.
+
 **O1 — the gcd-2 ray classification.** For each `r ∈ {1,3,5,7}`, decide `out(2⟨8,q⟩)` for all
 `q ≡ r (mod 8)`: either exhibit the unique P-root or prove the ray has none.
 *Status:* the bundle decided **no** root here (all its root runs crashed); `q = 3,5,9` are N
