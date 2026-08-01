@@ -28,7 +28,10 @@ What this review does establish:
 7. The bundle **never decided a single ray root**: every root run crashed (§7).
 
 Verification code: `indep.cpp` (pruning-free gcd-1 solver), `sylver2.cpp` (gcd-2 solver),
-`proofcheck.cpp` (checks the structural identity behind Theorem 1).
+`proofcheck.cpp` (structural identity behind Theorem 1), `thm3.cpp` (Theorems 1′ and 3).
+
+**See `WHAT_REMAINS.md`** for the precise inventory of what is left, reduced to five explicit
+obligations.
 
 ---
 
@@ -131,14 +134,17 @@ delta :   P-count   N-count
     4 :      749       7263
 ```
 
-> **Conjecture R2⁺.** Every P-position other than the terminal `{1}` satisfies `δ ≥ 2`; i.e. no
-> pseudo-symmetric semigroup with `F > 1` is P either.
+> **Theorem 1′ (PROVED — see `WHAT_REMAINS.md` §2.2).** If `F(S) > 1` and `δ(S) ≤ 1` then `S` is N.
+> Every P-position other than the terminal `{1}` therefore satisfies `δ ≥ 2`.
 
-Theorem 1 settles `δ = 0`. The `δ = 1` case is verified on all 618 pseudo-symmetric semigroups of
-genus ≤ 20 but is **not** covered by the proof: a pseudo-symmetric `S` has exactly one exceptional
-gap, `u = F/2`, so Step 1 fails there, `⟨S,F/2⟩ ≠ ⟨S⁺,F/2⟩` in general, and the inclusion
-`children(S⁺) ⊆ children(S)` breaks. Closing that single exceptional branch would give R2⁺ and a
-strictly stronger one-line pruning rule (`δ(S) ≤ 1 ⟹ N`) for the solver.
+This was initially recorded here as a conjecture; it is now proved. The key counting identity is
+`δ(S) = 2·D(S) + [F even]`, where `D(S)` counts pairs `{u, F−u}` with `u ≠ F−u` and both gaps — so
+`δ ≤ 1 ⟺ D = 0`. The lone exceptional gap of a pseudo-symmetric `S` is `u = F/2`, and it is
+harmless because `2·(F/2) = F ∈ ⟨S,F/2⟩` automatically, so `⟨S,F/2⟩ = ⟨S⁺,F/2⟩` after all and Step 3
+goes through unchanged. Verified 33,280/33,280 and 1,034/1,034 at genus ≤ 18.
+
+This gives the solver a strictly stronger one-line pruning rule, `δ(S) ≤ 1 ⟹ N`, replacing
+`is_symmetric`.
 
 ---
 
@@ -351,7 +357,10 @@ the need to walk the odd family at all for these cores.
 - **Theorem 1 (R2)**: symmetric with `F > 1` ⟹ N. *Was the project's hidden assumption.*
 - R1: `2 ∈ S` or `3 ∈ S` with `F > 1` ⟹ N.
 - Frobenius interface `⟨S,x⟩ = ⟨S⁺,x⟩` when `F − x ∈ S`; solver move coverage complete.
+- **Theorem 1′**: `δ(S) ≤ 1` with `F > 1` ⟹ N (strengthens Theorem 1 to the pseudo-symmetric case).
 - **Theorem 2**: symmetric-core reduction — the odd tail of `2B` is finite when `B` is symmetric.
+- **Theorem 3** (gluing): `S` symmetric, `gcd(u,d)=1`, `u ∈ S` ⟹ `⟨dS,u⟩` symmetric with
+  `F = d·F(S) + (d−1)u`. Discharges every drop-to-gcd-1 branch at every layer.
 - `⟨8,n⟩` symmetric for all odd `n`; `⟨8,4k+2,8k+1⟩` symmetric for all `k` (via `genus = (F+1)/2`).
 - Handoff §15's "odd-response family N" — now genuinely proved, as a corollary of Theorem 1.
 
@@ -369,7 +378,6 @@ the need to walk the odd family at all for these cores.
 
 **OPEN**
 - Outcome of `{16}`. Conway's $1000 question.
-- Conjecture R2⁺ (the `δ = 1` / pseudo-symmetric case).
 - All seven ray outcome tables; the bundle has **no** root beyond `n = 9` (§7).
 - `𝒫_3 = ⟨16,28,50⟩` — odd tail now finite (§4b), still undecided.
 - The period-8 law of §5.
@@ -383,8 +391,6 @@ the need to walk the odd family at all for these cores.
    single biggest unlock and needs no new mathematics.
 2. **Settle `⟨8,10,12,14⟩`** by proving the period-8 law of §5. `⟨8,14⟩ P` — and hence `⟨16,14⟩ N` —
    actually rests on it.
-3. **Prove R2⁺** by closing the single exceptional branch `u = F/2` (§2). Payoff: the strictly
-   stronger one-line pruning rule `δ(S) ≤ 1 ⟹ N`.
 4. **Update the handoff ledger**: R2 was never listed; it is now Theorem 1. Add Theorem 2, which
    supersedes the lasso machinery for symmetric cores.
 5. **Fix the manifests** and write the genuinely independent checker of §16 agent 10.

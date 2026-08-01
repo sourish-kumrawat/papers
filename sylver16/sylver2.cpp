@@ -38,8 +38,11 @@ static char solve1(const Key&S){
     //   3 in S => <S,2> = {0,2,3,4,...} whose only gap is 1 => P.
     //   2 in S => 3 is a gap and <S,3> = {0,2,3,4,...} => P.
     if(!tst(S,2)||!tst(S,3)){ memo1.emplace(S,(char)2); return 2; }
-    // R2 (ASSUMED, verified exhaustively to genus 20): symmetric with F>1 => N
-    if(USE_R2 && isSymmetric(S)){ memo1.emplace(S,(char)2); return 2; }
+    // THEOREM 1' (PROVED): delta(S) = 2*genus - F - 1 <= 1 and F>1  =>  S is N.
+    // delta<=1 <=> no pair {u,F-u}, u!=F-u, both gaps <=> <S,u>=<S+,u> for every gap u
+    // => children(S) = {S+} u children(S+) => Absorption Lemma.
+    if(USE_R2){ int gg=0; for(int x=1;x<=F;++x) if(tst(S,x))++gg;
+        if(2*gg-F-1<=1){ memo1.emplace(S,(char)2); return 2; } }
     char res=1;
     for(int g=2;g<=F;++g) if(tst(S,g)){ if(solve1(childGaps(S,g))==1){ res=2; break; } }
     memo1.emplace(S,res); return res;
@@ -184,6 +187,15 @@ int main(int argc,char**argv){
                    u,keyF(C),genusOf(C),(int)isSymmetric(C), r==1?"P":"N", w);
             fflush(stdout);
         }
+        printf("\n--- global UNKNOWN frontier (distinct blocking cores) ---\n");
+        int nf=0;
+        for(auto&kv:memo2){ if(kv.second.v!=0) continue;
+            const Key&B=kv.first; int F=keyF(B),g=genusOf(B);
+            if(kv.second.wit.substr(0,22)!="UNKNOWN: core not symm") continue;   // root causes only
+            ++nf;
+            printf("  core F=%-3d genus=%-3d delta=%-2d gaps=%s\n",F,g,2*g-F-1,gapstr(B).c_str());
+        }
+        printf("  total root-cause blocking cores: %d   (all gcd-2 positions 2T, T non-symmetric)\n",nf);
         return 0;
     }
     if(mode=="ray"){
@@ -201,6 +213,15 @@ int main(int argc,char**argv){
                    n,n%8,2*n,n,(int)isSymmetric(B), r.v==1?"P":(r.v==2?"N":"UNKNOWN"), r.wit.c_str());
             fflush(stdout);
         }
+        printf("\n--- global UNKNOWN frontier (distinct blocking cores) ---\n");
+        int nf=0;
+        for(auto&kv:memo2){ if(kv.second.v!=0) continue;
+            const Key&B=kv.first; int F=keyF(B),g=genusOf(B);
+            if(kv.second.wit.substr(0,22)!="UNKNOWN: core not symm") continue;   // root causes only
+            ++nf;
+            printf("  core F=%-3d genus=%-3d delta=%-2d gaps=%s\n",F,g,2*g-F-1,gapstr(B).c_str());
+        }
+        printf("  total root-cause blocking cores: %d   (all gcd-2 positions 2T, T non-symmetric)\n",nf);
         return 0;
     }
     return 0;
