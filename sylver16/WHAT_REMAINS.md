@@ -189,6 +189,10 @@ Every entry above is an **N**, so no P-root has been found in any ray — but no
 *cleared* either, and the search has reached only the first root of each. `<16,14,8> = <8,14>` and
 `<16,6,7> = <6,7,16>` were checked directly.
 
+> **See `O4_O5_ATTEMPT.md`** for three attacks on O4/O5 that were tried and failed (generalised
+> absorption, ray-level absorption, and the computational route), plus the one positive result:
+> the gcd-8 layer is a linear chain, and `⟨16,8⟩` is N via 14.
+
 **O1 — the gcd-2 ray classification.** For each `r ∈ {1,3,5,7}`, decide `out(2⟨8,q⟩)` for all
 `q ≡ r (mod 8)`: either exhibit the unique P-root or prove the ray has none.
 *Status:* the bundle decided **no** root here (all its root runs crashed); `q = 3,5,9` are N
