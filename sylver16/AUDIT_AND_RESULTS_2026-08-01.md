@@ -77,6 +77,38 @@ The move `F` wins in some cases and loses in others; the smallest winning move j
 **Proving R2 is the single highest-value open sub-problem in this project** — it is a clean,
 self-contained statement about numerical semigroups, and everything else is downstream of it.
 
+### A strictly stronger conjecture, and a free extra pruning rule
+
+Tabulating outcome against `δ(S) = 2·genus(S) − F(S) − 1` (the handoff's own defect invariant,
+§5.1; `δ = 0` ⟺ symmetric, `δ = 1` ⟺ pseudo-symmetric) over every semigroup of genus ≤ 20:
+
+```
+delta :   P-count   N-count
+    0 :        1       1148      <- the single P is the terminal position, gaps={1}, F=1
+    1 :        0        618
+    2 :      180       3586
+    3 :      149       1937
+    4 :      749       7263
+   ...
+```
+
+> **Conjecture R2⁺.** Every P-position other than the terminal `{1}` satisfies `δ(S) ≥ 2`.
+> Equivalently: **no symmetric and no pseudo-symmetric numerical semigroup with `F > 1` is P.**
+
+This subsumes R2 (`δ = 0`) and adds the pseudo-symmetric case (`δ = 1`), which is *not* used
+anywhere in the bundle. Verified on all 1,148 symmetric **and** 618 pseudo-symmetric semigroups of
+genus ≤ 20, zero counterexamples.
+
+Two payoffs. First, R2⁺ is a more natural statement than R2 and may be the easier induction —
+δ is exactly the quantity the duplication theory already tracks. Second, it is **immediately
+usable**: adding `δ(S) ≤ 1 ⟹ N` to `verify_doubled_core.cpp` costs one line and prunes strictly
+more than the current `is_symmetric` test.
+
+Note the propagation is limited: I verified the handoff's §5.1 invariants
+`δ(D) = 2δ(B)`, `F(D) = z + 2F(B)`, `g(D) = 2g(B) + (z−1)/2` on **734/734** cases, and
+`δ(B) = 1` gives `δ(D) = 2`. So pseudo-symmetric cores do *not* inherit a dischargeable odd tail —
+only `δ(B) = 0` does, which is why §3 below is stated for symmetric cores only.
+
 ---
 
 ## 2. The other two rules are provable
@@ -293,6 +325,8 @@ walk the odd family at all for these cores.
 ## 8. Corrected status ledger
 
 **PROVED (with proof given here)**
+- Handoff §5.1 duplication invariants `δ(D)=2δ(B)`, `F(D)=z+2F(B)`, `g(D)=2g(B)+(z−1)/2`
+  — verified 734/734 (computational, not a proof, but no counterexample).
 - R1: `2 ∈ S` or `3 ∈ S` with `F > 1` ⟹ N.
 - Frobenius interface `⟨S,x⟩ = ⟨S⁺,x⟩` when `F − x ∈ S`; solver move coverage complete.
 - Symmetric-core reduction (§3), *conditional on R2*.
@@ -321,8 +355,11 @@ walk the odd family at all for these cores.
 
 ## 9. Recommended next steps, in priority order
 
-1. **Prove R2.** Self-contained, purely about numerical semigroups, and everything depends on it.
-   If it is false, the entire certificate library falls; if true, several claims below follow.
+1. **Prove R2, or better R2⁺** (§1). Self-contained, purely about numerical semigroups, and
+   everything depends on it. If it is false, the entire certificate library falls. Try the
+   induction on `δ` — it is the invariant the duplication theory already tracks, and R2⁺ is the
+   statement that δ ≤ 1 forces a winning move.
+   Meanwhile add `δ(S) ≤ 1 ⟹ N` to the solver as a one-line strictly-stronger pruning rule.
 2. **Re-run the four crashed ray roots** using the §3 reduction, which makes their odd families
    finite. `Q_11`, `Q_15`, `Q_19` and `𝒫_3` are now in reach in a way they were not.
 3. **Settle `⟨8,10,12,14⟩`** by proving the period-8 law of §4. This is what `⟨8,14⟩ P` —
