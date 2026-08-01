@@ -1,0 +1,4 @@
+semigroups solved : 93141   (P: 9633)
+RULE R1  [F>1 and (2 in S or 3 in S)  => N] : tested 101, N 101, VIOLATIONS 0
+RULE R2  [symmetric and F>1           => N] : tested 1148, N 1148, VIOLATIONS 0
+memo states=93141 nodes=93141
