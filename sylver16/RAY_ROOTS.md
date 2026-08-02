@@ -45,6 +45,7 @@ All P-cells below were re-derived here, and every legality claim machine-checked
 | `Q_9  = ⟨16,18⟩` | `⟨12,16,18⟩ = 2⟨6,8,9⟩` P | 2,470 | **12** | N *(bundle had odd 5; 12 is a second witness)* |
 | `Q_11 = ⟨16,22⟩` | `⟨12,16,22⟩ = 2⟨6,8,11⟩` P | 4,422 | **12** | **N — NEW** |
 | `Q_17 = ⟨16,34⟩` | `⟨16,20,34⟩ = 2⟨8,10,17⟩` P | 514,391 | **20** | **N — NEW** |
+| `Q_7  = ⟨16,14⟩` | `⟨8,14⟩ = 2⟨4,7⟩` P | 718 | **8** | N — now **unconditional** (O3 closed) |
 
 Legality and identity checks (all `True`):
 
@@ -84,7 +85,7 @@ cleared by classifying *all* of it. Known values, by ray:
  q = 1 mod 8 :  q=9  N,  q=17 N        smallest undecided root: q=25
  q = 3 mod 8 :  q=3  N,  q=11 N        smallest undecided root: q=19
  q = 5 mod 8 :  q=5  N                 smallest undecided root: q=13
- q = 7 mod 8 :  q=7  N                 smallest undecided root: q=15
+ q = 7 mod 8 :  q=7  N (unconditional) smallest undecided root: q=15
  gcd-4 ray (2 rays), gcd-8 ray (1 ray) : only <16,8> N via 14
 ```
 
@@ -101,3 +102,33 @@ for `Q_11`, and a general mechanism — Proposition R — turning the P-cell tab
 **Does not:** clear a single ray. Each ray is an infinite family and the roots decided are the first
 few members. The obligations O1–O5 stand; O4 (ray uniformity) and O5 (a P-root cutoff) are
 untouched, and remain the open problem.
+
+
+---
+
+## 5. O3 is closed
+
+The obligation O3 — the position the whole `⟨8,14⟩ P` claim rested on — is now decided:
+
+```
+<8,10,12,14> = 2<4,5,6,7>   P   all children N   (nodes=7)
+<8,12,14>    = 2<4,6,7>     N   via even move 10
+<8,14>       = 2<4,7>       P   all children N   (nodes=718)
+```
+
+This confirms the prediction made from the period-8 law: `⟨8,12,14⟩`'s only possible witness was
+the even move to `⟨8,10,12,14⟩`, and that position is indeed P.
+
+Two consequences.
+
+**(a) `Q_7 = ⟨16,14⟩` is N via 8, unconditionally.** Every claim previously carried with an
+"inherits O3" caveat — including `⟨16,8⟩` N via 14 — is now unconditional.
+
+**(b) The refutation of "`2B` P ⟹ `B` symmetric" now has a certificate.** `⟨4,5,6,7⟩` has
+`δ = 2` and is *not* symmetric, yet `2⟨4,5,6,7⟩` is P. So Theorem 2's symmetric-core hypothesis is
+genuinely necessary, and the class of P-positions at gcd 2 is strictly larger than the
+symmetric-core ones. This was stated earlier as a near-certainty from a bounded scan; it is now
+settled.
+
+It also independently corroborates the period-8 law: every odd child of `⟨8,10,12,14⟩` had to be N
+for the position to be P, and the scan to `u ≤ 61` had found exactly that.
