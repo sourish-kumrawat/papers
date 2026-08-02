@@ -195,13 +195,18 @@ Every entry above is an **N**, so no P-root has been found in any ray — but no
 
 **O1 — the gcd-2 ray classification.** For each `r ∈ {1,3,5,7}`, decide `out(2⟨8,q⟩)` for all
 `q ≡ r (mod 8)`: either exhibit the unique P-root or prove the ray has none.
-*Status:* the bundle decided **no** root here (all its root runs crashed); `q = 3,5,9` are N
-(reproduced independently), `q = 7` reduces to `⟨8,14⟩` (see O3).
+*Status:* `q = 3,5,7,9,11,17` all N — see `RAY_ROOTS.md`. `q=11` and `q=17` are new (the bundle
+decided none of these; its root runs all crashed). Frontier: `q = 13, 15, 19, 25`.
 
 **O2 — the gcd-4 and gcd-8 ray classifications.** Same for `4⟨4,q⟩` (`q mod 4`) and `8⟨2,q⟩`.
-*Status:* untouched by the bundle. These layers depend on O1.
+*Status:* untouched by the bundle; opened here. gcd-4: `⟨16,4⟩`, `⟨16,12⟩`, `⟨16,20⟩` all N.
+gcd-8: `⟨16,8⟩`, `⟨16,24⟩` both N. Frontier: `⟨16,28⟩`, `⟨16,36⟩`, `⟨16,40⟩`.
 
-**O3 — the non-symmetric gcd-2 frontier.** Theorem 2 covers symmetric cores. What remains is the
+**O3 — CLOSED.** `⟨8,10,12,14⟩ = 2⟨4,5,6,7⟩` is **P**, so `⟨8,12,14⟩` is N via 10 and
+`⟨8,14⟩` is **P**. Consequently `Q_7 = ⟨16,14⟩` N via 8 and `⟨16,8⟩` N via 14 are unconditional,
+and the refutation of "`2B` P ⟹ `B` symmetric" now has a certificate. Original statement:
+
+**O3 (original) — the non-symmetric gcd-2 frontier.** Theorem 2 covers symmetric cores. What remains is the
 set of gcd-2 positions `2T` with `T` non-symmetric that block a P-proof. For `⟨8,14⟩` this frontier
 is a **single** position, `2⟨4,5,6,7⟩ = ⟨8,10,12,14⟩`, whose odd children obey the period-8 law
 ```
