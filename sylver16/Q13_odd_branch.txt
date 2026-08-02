@@ -19,6 +19,6 @@
 <16,26,57>  F=207 genus=106 delta=4  N   nodes=23396825  489.76s
 <16,26,59>  F=199 genus=105 delta=10  N   nodes=25527778  540.58s
 <16,26,67>  F=207 genus=111 delta=14  N   nodes=37906878  862.23s
-u=75  TIMEOUT
-u=83  TIMEOUT
 Q13ODDDONE
+<16,26,75>  F=215 genus=117 delta=18  N   nodes=53239288  1421.64s
+<16,26,83>  F=233 genus=123 delta=12  N   nodes=70164607  2057.34s
