@@ -58,6 +58,22 @@ Q_17=<16,34>: move 20 legal, <16,34,20> == <16,20,34>
 `Q_11` is the significant one: the bundle's `q11_root` run printed `cores=857 F=69 genus=35` and
 then died with no result. It is now decided.
 
+**Independent check of the `Q_11` witness.** `⟨12,16,22⟩ = 2⟨6,8,11⟩` is P only if all its children
+are N. Its core is symmetric, so Theorem 2 discharges every odd `u ∈ ⟨6,8,11⟩` by proof, leaving the
+seven odd gaps `3,5,7,9,13,15,21`. Checked with `fast` (the Theorem-4 solver, differential-tested
+against the pruning-free reference) — all N, and the Frobenius numbers
+
+```
+F = 29, 23, 27, 35, 43, 41, 51
+```
+
+match the bundle's `tmp_6_11.out` **exactly**, entry for entry. The odd branch of the witness is
+therefore independently confirmed; the even branch (11 gaps) still rests on the bundle solver.
+
+*Consistency note.* The bundle lists the even child `2⟨6,8,11,7⟩` as N, while `⟨12,14,16⟩` is P
+(the `⟨16,12⟩` witness). These are not in conflict: `11 ∉ ⟨6,7,8⟩`, so `⟨6,8,11,7⟩ = ⟨6,7,8,11⟩`
+and the child is `⟨12,14,16,22⟩`, a different position from `⟨12,14,16⟩`. Machine-checked.
+
 ### `Q_11`'s odd branch is also completely closed
 
 Independently of the witness above, **every** odd child of `Q_11` is an N-position:
