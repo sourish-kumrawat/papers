@@ -108,6 +108,18 @@ exactly then), and from `⟨16,8q⟩` they are `2⟨8,4q,m⟩`.
 
 Legality and identity machine-checked for all five; external gcds confirmed (`4,4,4,8,8`).
 
+**Independent checks of the two new witnesses.** Both have symmetric cores, so Theorem 2 discharges
+every odd `u` in the core by proof and leaves only the odd gaps:
+
+```
+<12,14,16> = 2<6,7,8>   core F=17, odd gaps 3,5,9,11,17    -> all N
+<10,16,24> = 2<5,8,12>  core F=19, odd gaps 3,7,9,11,19    -> all N
+```
+
+checked with `fast` (the Theorem-4 solver, differential-tested against the pruning-free reference).
+The odd branch of each witness is therefore independently confirmed; the even branches still rest on
+the bundle solver.
+
 Note `⟨16,20,34⟩` does double duty: it witnesses both `Q_17 = ⟨16,34⟩` (gcd-2 layer) and
 `⟨16,20⟩` (gcd-4 layer).
 
