@@ -1,0 +1,8 @@
+############ gcd-4 ray:  <16,4q> = 4<4,q> ############
+=== <16,4>  (q=1, q mod 4 = 1) ===
+   *** POSITION <16,4,6> P all children N nodes=0  ==> <16,4> is N via move 6
+=== <16,12>  (q=3, q mod 4 = 3) ===
+   *** POSITION <16,12,14> P all children N nodes=966  ==> <16,12> is N via move 14
+=== <16,20>  (q=5, q mod 4 = 1) ===
+   *** POSITION <16,20,34> P all children N nodes=514391  ==> <16,20> is N via move 34
+=== <16,28>  (q=7, q mod 4 = 3) ===
