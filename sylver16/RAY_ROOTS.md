@@ -63,10 +63,11 @@ Independently of the witness above, **every** odd child of `Q_11` is an N-positi
 
 - the core `⟨8,11⟩` is symmetric, so by **Theorem 2** every odd `u ∈ ⟨8,11⟩` gives a symmetric
   child, hence N by **Theorem 1′** — infinitely many moves, discharged by proof;
-- that leaves exactly the 19 odd **gaps** of `⟨8,11⟩`, each checked explicitly:
+- that leaves exactly the 19 odd **gaps** of `⟨8,11⟩`, each checked explicitly (largest:
+  `⟨16,22,69⟩`, `F=191`, genus 102, 11.4M states):
 
 ```
-u = 3,5,7,9,13,15,17,21,23,25,29,31,37,39,45,47,53,61   all N   (u=69 in progress)
+u = 3,5,7,9,13,15,17,21,23,25,29,31,37,39,45,47,53,61,69   all N   (complete)
 ```
 
 This is the first complete odd-branch classification of any ray root, and it is exactly the

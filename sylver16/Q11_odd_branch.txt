@@ -16,3 +16,5 @@
 <16,22,47>  F=169 genus=87 delta=4  N   nodes=3707556  45.39s
 <16,22,53>  F=169 genus=90 delta=10  N   nodes=5455368  77.20s
 <16,22,61>  F=177 genus=96 delta=14  N   nodes=8089262  124.96s
+<16,22,69>  F=191 genus=102 delta=12  N   nodes=11413499  202.86s
+DONE
