@@ -125,6 +125,39 @@ Theorem 1′ bites. Extending the scan raises confidence but proves nothing.
 
 ---
 
+## 4b. A bounded, uniform ray obligation
+
+Combining Theorem 4′ with the handoff's §5.2 gives the sharpest form of the ray obligation I have.
+
+For `Q_q = (2,⟨8,q⟩)`, `B_q := ⟨8,q⟩⁺ = ⟨8,q,7q−8⟩`. I verified §5.2 directly for all odd
+`q ∈ [9,43]`:
+
+```
+F(B_q) = 7q − 16 ,   δ(B_q) = 6 ,
+double-gap pairs = { (q−8, 6q−8), (2q−8, 5q−8), (3q−8, 4q−8) }      (exactly 3, all affine in q)
+```
+
+So `B_q` carries **exactly three** exceptional pairs, and their endpoints are affine in `q` —
+a bounded amount of structure, *uniform in `q`*. By Theorem 4′,
+
+> `Q_q` is P ⟹ some odd `u` makes `H_{q,u} := ⟨2B_q, u⟩` a P-position,
+
+and `δ(H_{q,u}) = 2·δ(B_q) = 12` (matching the handoff's `δ(H_{q,z}) = 12`), so `H_{q,u}` has
+**exactly six** exceptional pairs, again affine in `(q,u)`. Theorem 4 then says `H_{q,u}` is N as
+soon as all six of its exceptional-gap completions `⟨H⁺,w⟩` are N.
+
+**The branching factor is therefore bounded by 6, independently of `q` and `u`.** This is the shape
+of the "bounded control signature" the handoff's §11 asks for, and it is genuinely uniform in the
+ray parameter — which nothing else in this project achieved.
+
+**It is not a solution.** The six sub-obligations are themselves large numerical semigroups whose
+outcomes are not determined by the signature: resolving them recursively regenerates the same
+problem one level down, with no proof that the recursion closes. A bounded branching factor is
+necessary for a ray theorem, not sufficient. What is still missing is an *outcome-complete*
+invariant — one whose value at `H_{q,u}` determines the six answers without recursion.
+
+---
+
 ## 5. Why this still does not give O4/O5
 
 Theorem 4 sharpens the *necessary condition* for a P-position from "`δ ≥ 2`" to "has an exceptional
