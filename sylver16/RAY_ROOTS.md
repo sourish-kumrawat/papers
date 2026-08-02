@@ -137,8 +137,8 @@ cleared by classifying *all* of it. Known values, by ray:
  q = 5 mod 8 :  q=5  N                 smallest undecided root: q=13
  q = 7 mod 8 :  q=7  N (unconditional) smallest undecided root: q=15
  gcd-4, q = 1 mod 4 :  q=1 N, q=5 N     smallest undecided root: q=9   (<16,36>)
- gcd-4, q = 3 mod 4 :  q=3 N             smallest undecided root: q=7   (<16,28>)
- gcd-8 single ray   :  q=1 N, q=3 N      smallest undecided root: q=5   (<16,40>)
+ gcd-4, q = 3 mod 4 :  q=3 N             smallest undecided root: q=7   (<16,28>)  -- scanned, no P-cell
+ gcd-8 single ray   :  q=1 N, q=3 N      smallest undecided root: q=5   (<16,40>)  -- scanned, no P-cell
 ```
 
 ### What the accumulating N's would mean
@@ -187,6 +187,22 @@ So the halves of these certificates that Theorem 2 makes finite are independentl
 even branches — the finite recursions through each core's oversemigroup lattice — still rely on the
 bundle's solver, whose pruning rules are proved sound (Theorem 1, Theorem 1′, R1, Frobenius
 interface) but whose implementation has not been re-derived here.
+
+---
+
+### Frontier scans that found nothing
+
+Two layer frontiers were scanned for a P-cell witness and came up empty
+(`scan_frontier_16-40_16-28.txt`):
+
+```
+<16,40> = 8<2,5>  : 2<8,20,m>, m odd    m=1..15 all N ; m=17,19,21,23,25 timed out (200s)
+<16,28> = 4<4,7>  : 2<8,14,m>, m odd    m=1..23 all N except m=19 timed out
+```
+
+Both roots remain **undecided**. As with the `Q_15`/`Q_19` scans, a null result here is not evidence
+the root is P: the scans are bounded in `m`, several candidates timed out rather than returning N,
+and the search covers only even children — an odd witness is not excluded.
 
 ---
 

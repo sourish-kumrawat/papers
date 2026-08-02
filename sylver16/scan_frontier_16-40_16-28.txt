@@ -1,0 +1,27 @@
+=== <16,40> = 8<2,5>  : scanning 2<8,20,m>, m odd ===
+   m=1 N
+   m=3 N
+   m=5 N
+   m=7 N
+   m=9 N
+   m=11 N
+   m=13 N
+   m=15 N
+   m=17 timeout
+   m=19 timeout
+   m=21 timeout
+   m=23 timeout
+   m=25 timeout
+=== <16,28> = 4<4,7>  : scanning 2<8,14,m>, m odd ===
+   m=1 N
+   m=3 N
+   m=5 N
+   m=9 N
+   m=11 N
+   m=13 N
+   m=15 N
+   m=17 N
+   m=19 timeout
+   m=21 N
+   m=23 N
+G8DONE
