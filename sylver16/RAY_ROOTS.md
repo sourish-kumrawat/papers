@@ -112,8 +112,32 @@ cleared by classifying *all* of it. Known values, by ray:
  gcd-8 single ray   :  q=1 N, q=3 N      smallest undecided root: q=5   (<16,40>)
 ```
 
-Every root decided so far is **N**. That is consistent both with `{16}` being P (all seven rays
-P-root-free) and with a P-root sitting further out; nothing here distinguishes the two.
+### What the accumulating N's would mean
+
+Orientation matters here. `{16}` is the position *after* the first player names 16, so the second
+player is the one to move:
+
+```
+  {16} is P  <=>  the player to move (second player) loses  <=>  opening 16 WINS
+  {16} is N  <=>  opening 16 LOSES
+```
+
+And `{16}` is N exactly when some `⟨16,x⟩` is P — i.e. when some ray has a P-root, which would then
+*be* the winning reply. So:
+
+- **a single P-root anywhere ⟹ opening 16 loses**, with that root as the refutation;
+- **all seven rays P-root-free ⟹ opening 16 wins**.
+
+Every root decided so far — nine of them, across all three even layers — is **N**, and the targeted
+P-cell searches at `q = 13, 15, 19` have turned up no P-cell either. That leans towards the rays
+being P-root-free and hence towards `{16}` P, but it is **only a lean**: the rays are infinite, the
+searches reach their first few members, and a P-root arbitrarily far out is not excluded by
+anything proved here. Nothing in this file distinguishes the two outcomes.
+
+One caveat on the searches specifically: restricting to candidates with **symmetric** cores is a
+heuristic, not a filter that provably loses nothing — `⟨4,5,6,7⟩` has `δ = 2`, is not symmetric, and
+`2⟨4,5,6,7⟩` is nonetheless P. So "no P-cell among the symmetric candidates" does not prove a root
+is P.
 
 ---
 
