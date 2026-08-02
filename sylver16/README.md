@@ -46,13 +46,31 @@ It is now a theorem (Theorem 1), so the library is sound and unconditional.
 
 **Ray roots decided** (the bundle decided none beyond `n = 9`; all its root runs crashed):
 
-- `Q_11 = ⟨16,22⟩` is **N via 12** — its `q11_root` run died with no result
-- `Q_17 = ⟨16,34⟩` is **N via 20**
-- `Q_9 = ⟨16,18⟩` is N via 12 (a second witness)
-- `⟨16,8⟩` is N via 14
+| root | layer | move | witness |
+|---|---|---|---|
+| `Q_11 = ⟨16,22⟩` | gcd 2 | **12** | `⟨12,16,22⟩` P — its `q11_root` run died with no result |
+| `Q_17 = ⟨16,34⟩` | gcd 2 | **20** | `⟨16,20,34⟩` P |
+| `Q_9 = ⟨16,18⟩` | gcd 2 | 12 | `⟨12,16,18⟩` P (second witness) |
+| `Q_7 = ⟨16,14⟩` | gcd 2 | 8 | `⟨8,14⟩` P — unconditional once O3 closed |
+| `⟨16,12⟩` | gcd 4 | **14** | `⟨12,14,16⟩` P |
+| `⟨16,20⟩` | gcd 4 | **34** | `⟨16,20,34⟩` P |
+| `⟨16,4⟩` | gcd 4 | 6 | `⟨4,6⟩` P |
+| `⟨16,24⟩` | gcd 8 | **10** | `⟨10,16,24⟩` P |
+| `⟨16,8⟩` | gcd 8 | 14 | `⟨8,14⟩` P |
+
+The gcd-4 and gcd-8 layers were untouched by the bundle. Every witness's **odd branch** is
+independently verified (Theorem 2 reduces each to a handful of odd-gap checks); the even branches
+rest on the bundle's solver, whose pruning rules are proved sound here.
+
+**O3 closed.** `⟨8,10,12,14⟩ = 2⟨4,5,6,7⟩` is P, so `⟨8,12,14⟩` is N via 10 and `⟨8,14⟩` is P.
+This also certifies the refutation of *"`2B` P ⟹ `B` symmetric"*.
 
 `Q_11`'s **odd branch is completely classified**: Theorem 2 discharges infinitely many moves by
-proof, leaving 19 odd gaps, all checked N.
+proof, leaving 19 odd gaps, all checked N. The same computation for `Q_13` is in progress.
+
+**Every root decided is N.** A single P-root anywhere would make `{16}` N and refute the opening;
+all seven rays being P-root-free would make `{16}` P. Nothing here distinguishes the two — the rays
+are infinite and only their first few members are known.
 
 **Reproductions.** The headline `⟨16,28,38,40⟩` P reproduced bit-for-bit (`nodes=2890848`);
 `⟨16,27,28,46⟩` P confirmed unconditionally, upgrading the certificate the handoff flagged as
