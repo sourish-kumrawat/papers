@@ -108,12 +108,13 @@ exactly then), and from `⟨16,8q⟩` they are `2⟨8,4q,m⟩`.
 
 Legality and identity machine-checked for all five; external gcds confirmed (`4,4,4,8,8`).
 
-**Independent checks of the two new witnesses.** Both have symmetric cores, so Theorem 2 discharges
+**Independent checks of the new witnesses.** Both have symmetric cores, so Theorem 2 discharges
 every odd `u` in the core by proof and leaves only the odd gaps:
 
 ```
-<12,14,16> = 2<6,7,8>   core F=17, odd gaps 3,5,9,11,17    -> all N
-<10,16,24> = 2<5,8,12>  core F=19, odd gaps 3,7,9,11,19    -> all N
+<12,14,16> = 2<6,7,8>   core F=17, odd gaps 3,5,9,11,17                     -> all N
+<10,16,24> = 2<5,8,12>  core F=19, odd gaps 3,7,9,11,19                     -> all N
+<16,20,34> = 2<8,10,17> core F=39, odd gaps 3,5,7,9,11,13,15,19,21,23,29,31,39 -> all N
 ```
 
 checked with `fast` (the Theorem-4 solver, differential-tested against the pruning-free reference).
@@ -166,6 +167,26 @@ One caveat on the searches specifically: restricting to candidates with **symmet
 heuristic, not a filter that provably loses nothing — `⟨4,5,6,7⟩` has `δ = 2`, is not symmetric, and
 `2⟨4,5,6,7⟩` is nonetheless P. So "no P-cell among the symmetric candidates" does not prove a root
 is P.
+
+---
+
+## 3b. Verification status of the four P-cell witnesses
+
+Each new root rests on a P-cell. Every one of those cells has a **symmetric core**, so Theorem 2
+discharges its infinitely many odd moves `u ∈ core` by proof, leaving a short finite list of odd
+gaps. Those lists have all been checked independently with `fast`:
+
+| P-cell | core | odd gaps checked | odd branch | even branch |
+|---|---|---|---|---|
+| `⟨12,16,22⟩` | `⟨6,8,11⟩` | 7 | **verified** (F-values match `tmp_6_11.out` exactly) | bundle solver |
+| `⟨16,20,34⟩` | `⟨8,10,17⟩` | 13 | **verified** | bundle solver |
+| `⟨12,14,16⟩` | `⟨6,7,8⟩` | 5 | **verified** | bundle solver |
+| `⟨10,16,24⟩` | `⟨5,8,12⟩` | 5 | **verified** | bundle solver |
+
+So the halves of these certificates that Theorem 2 makes finite are independently confirmed. The
+even branches — the finite recursions through each core's oversemigroup lattice — still rely on the
+bundle's solver, whose pruning rules are proved sound (Theorem 1, Theorem 1′, R1, Frobenius
+interface) but whose implementation has not been re-derived here.
 
 ---
 
