@@ -76,6 +76,27 @@ finiteness that Theorem 2 buys: an infinite family reduced to 19 checks.
 
 ---
 
+## 2b. The gcd-4 and gcd-8 layers
+
+The bundle never touched these two layers at all. Proposition R applies there too: from
+`⟨16,4q⟩` the gcd-2 children are `⟨16,4q,2m⟩ = 2⟨8,2q,m⟩` with `m` **odd** (the gcd drops to 2
+exactly then), and from `⟨16,8q⟩` they are `2⟨8,4q,m⟩`.
+
+| root | layer | P-cell witness | move | status |
+|---|---|---|---|---|
+| `⟨16,4⟩ = 4⟨4,1⟩` | gcd 4 | `⟨4,6⟩` P | **6** | N |
+| `⟨16,12⟩ = 4⟨4,3⟩` | gcd 4 | `⟨12,14,16⟩ = 2⟨6,7,8⟩` P, 966 nodes | **14** | **N — NEW** |
+| `⟨16,20⟩ = 4⟨4,5⟩` | gcd 4 | `⟨16,20,34⟩ = 2⟨8,10,17⟩` P, 514,391 nodes | **34** | **N — NEW** |
+| `⟨16,8⟩ = 8⟨2,1⟩` | gcd 8 | `⟨8,14⟩ = 2⟨4,7⟩` P, 718 nodes | **14** | N (now unconditional) |
+| `⟨16,24⟩ = 8⟨2,3⟩` | gcd 8 | `⟨16,24,10⟩ = 2⟨8,12,5⟩` P, 1,392 nodes | **10** | **N — NEW** |
+
+Legality and identity machine-checked for all five; external gcds confirmed (`4,4,4,8,8`).
+
+Note `⟨16,20,34⟩` does double duty: it witnesses both `Q_17 = ⟨16,34⟩` (gcd-2 layer) and
+`⟨16,20⟩` (gcd-4 layer).
+
+---
+
 ## 3. Current frontier
 
 Ray descent (§4 of `WHAT_REMAINS.md`) allows at most one P-root per residue class, so a ray is only
@@ -86,7 +107,9 @@ cleared by classifying *all* of it. Known values, by ray:
  q = 3 mod 8 :  q=3  N,  q=11 N        smallest undecided root: q=19
  q = 5 mod 8 :  q=5  N                 smallest undecided root: q=13
  q = 7 mod 8 :  q=7  N (unconditional) smallest undecided root: q=15
- gcd-4 ray (2 rays), gcd-8 ray (1 ray) : only <16,8> N via 14
+ gcd-4, q = 1 mod 4 :  q=1 N, q=5 N     smallest undecided root: q=9   (<16,36>)
+ gcd-4, q = 3 mod 4 :  q=3 N             smallest undecided root: q=7   (<16,28>)
+ gcd-8 single ray   :  q=1 N, q=3 N      smallest undecided root: q=5   (<16,40>)
 ```
 
 Every root decided so far is **N**. That is consistent both with `{16}` being P (all seven rays
