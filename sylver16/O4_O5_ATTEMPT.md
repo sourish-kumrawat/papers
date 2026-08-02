@@ -80,6 +80,24 @@ is a numerical semigroup of genus around 110 requiring a full search.
 So the theorems proved in this project remove the infinite branches but **do not make the finite
 residue small**. That gap is precisely O3/O4.
 
+## 3b. The shell cell `𝒫_3 = ⟨16,28,50⟩`: the bundle's failure is reproducible-but-not-fatal
+
+The bundle's run on this cell (`test_8_14_25`, and the same computation as `Ps7_root`) died after
+printing `nodes=31063135`. Re-running the identical solver here reached the **same** point and then
+kept going, to `nodes=62742954` — twice as far — before being stopped by *my own* 40-minute cap.
+The log shows no `ERROR` line and no crash.
+
+So the bundle's failure on this cell was **not** an intrinsic wall of the algorithm (as the
+`ExactMask` overflow was for the ray roots, §7 of the audit); it was a resource limit. Given enough
+time the run may well complete. It has been relaunched without a cap.
+
+This matters for how the bundle's six dead runs should be read: `q11_root`, `q15_root512`,
+`q19_probe` died *immediately* after their header line, consistent with the documented 256/512-bit
+conductor overflow, whereas `test_8_14_25` / `Ps7_root` died deep into a long computation, which is
+a different failure mode.
+
+---
+
 ## 4. What did come out: the gcd-8 layer is a chain
 
 For odd `g < q`, `⟨2,q,g⟩ = ⟨2,g⟩` (since `q − g` is even, so `q ∈ ⟨2,g⟩`). **Verified 190/190.**
