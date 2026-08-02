@@ -72,6 +72,10 @@ gcd-2 solver around Theorems 1′/2/3 (which remove the infinite branches) and r
 
 **It did not finish**: 17+ minutes, 3.6 GB resident and still growing, no decision. Killed.
 
+*(Superseded in outcome, not in diagnosis: `Q_11` was later decided **N via 12** by finding a P-cell
+witness — `⟨12,16,22⟩` P — rather than by solving the root directly. The direct solve remains out of
+reach; the witness route sidesteps it. See `RAY_ROOTS.md`.)*
+
 The cost is intrinsic, not an implementation defect. Deciding `Q_11` means walking the 857-element
 oversemigroup lattice of `⟨8,11⟩`; for each *non-symmetric* core in it, Theorem 2 does not apply, so
 its odd children `D(B,u)` have `δ = 2δ(B) ≥ 2` — exactly where Theorem 1′ stops pruning — and each
@@ -117,7 +121,8 @@ It also settles the `q = 1` root of that ray: `⟨16,8⟩ = ⟨8⟩` (verified),
 
 > **`⟨16,8⟩` is N via 14.**
 
-(This inherits the one dependency of `⟨8,14⟩ P` — obligation O3.)
+(This was originally conditional on O3; **O3 is now closed** — `⟨8,10,12,14⟩` is P, hence `⟨8,14⟩`
+is P — so `⟨16,8⟩` N via 14 is unconditional.)
 
 The chain structure does **not** by itself decide the ray: the gcd-8 layer's *gcd-dropping* children
 are gcd-4 and gcd-2 positions, so it still sits on top of O1.
@@ -149,10 +154,14 @@ remains missing.
 
 | obligation | status |
 |---|---|
-| O1 gcd-2 ray classification | open; no root decided beyond `n=9` (compute wall, §3) |
-| O2 gcd-4 / gcd-8 rays | open; gcd-8 layer structure clarified (§4), `⟨16,8⟩` N via 14 |
-| O3 the `⟨8,10,12,14⟩` period-8 law | open |
+| O1 gcd-2 ray classification | open; roots `q = 3,5,7,9,11,17` now N. Frontier `q = 13,15,19,25` |
+| O2 gcd-4 / gcd-8 rays | open; layer opened — `⟨16,4⟩`, `⟨16,12⟩`, `⟨16,20⟩`, `⟨16,8⟩`, `⟨16,24⟩` all N; gcd-8 layer is a chain (§4) |
+| O3 the `⟨8,10,12,14⟩` position | **CLOSED** — it is P, so `⟨8,12,14⟩` N via 10 and `⟨8,14⟩` P |
 | **O4 ray uniformity** | **open — not solved here** |
 | **O5 P-root cutoff** | **open — not solved here** |
 
-Three attacks closed off (§1, §2, §3). One ray root added (`⟨16,8⟩` N). Opening 16 remains open.
+Three attacks closed off (§1, §2, §3); one failure mode re-diagnosed (§3b). O3 closed and nine ray
+roots decided since this file was first written — but every one of them is an **N**, so no ray has
+been cleared, and O4/O5 are untouched.
+
+**Opening 16 remains open.**
